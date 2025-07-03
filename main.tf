@@ -82,7 +82,7 @@ resource "azuread_synchronization_job_provision_on_demand" "group_provision_on_d
   depends_on = [azuread_app_role_assignment.enterprise_application_group_assignment]
   provider   = azuread.stratus
 
-  service_principal_id   = "/servicePrincipals/${local.service_principal_id}"
+  service_principal_id   = data.azuread_service_principal.app_service_principal.id
   synchronization_job_id = "/servicePrincipals/${local.service_principal_id}/synchronization/jobs/${var.enterprise_app_sync_job_id}"
 
   parameter {
