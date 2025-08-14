@@ -4,7 +4,7 @@ terraform {
     azuread = {
       source                = "hashicorp/azuread"
       configuration_aliases = [azuread.stratus]
-      version = "~> 3.4.0"
+      version = ">=3.4.0"
     }
   }
 }
