@@ -47,26 +47,3 @@ No modules.
 |------|-------------|
 | <a name="output_display_name"></a> [display\_name](#output\_display\_name) | The display name of the Azure AD group. |
 | <a name="output_group_id"></a> [group\_id](#output\_group\_id) | The object ID of the Azure AD group. |
-
-
-## Running Tests
-
-Export environment variables for the respective enterprise application service principal:
-
-```sh
-export ARM_TENANT_ID='a0f29d7e-28cd-4f54-8442-7885aee7c080'
-export ARM_CLIENT_ID='17e6874e-3ef0-4415-86d0-e6b92e594b70'
-export ARM_CLIENT_SECRET="$(aws --profile nrel-aws-ace \
-                                secretsmanager get-secret-value \
-                                --secret-id /nrel/ops/azure/graph/client_secret \
-                                --query 'SecretString' \
-                                --output text |
-                            grep -oE '"client_secret":"[^"]+"' |
-                            awk -F'"client_secret":"|"' '{print $2}')"
-```
-
-Then run:
-
-```sh
-terraform test
-```
