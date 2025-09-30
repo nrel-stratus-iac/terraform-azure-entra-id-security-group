@@ -26,4 +26,9 @@ run "group_created" {
     condition     = module.azure_security_group.group_id != null
     error_message = "Invalid group ID"
   }
+
+  assert {
+    condition     = module.azure_security_group.provisionment.id != null
+    error_message = "Invalid provisioning"
+  }
 }
